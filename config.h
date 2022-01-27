@@ -28,7 +28,7 @@ static Bool npisrelative  = False;
                 "prop=\"`xwininfo -children -id $1 | grep '^     0x' |" \
                 "sed -e's@^ *\\(0x[0-9a-f]*\\) \"\\([^\"]*\\)\".*@\\1 \\2@' |" \
                 "xargs -0 printf %b | dmenu -l 10 -w $1`\" &&" \
-                "xprop -id $1 -f $0 8s -set $0 \"$prop\"", \
+                "xprop -id $1 -f $0 8u -set $0 \"$prop\"", \
                 p, winid, NULL \
         } \
 }
@@ -45,7 +45,7 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,      XK_k,            movetab,     { .i = +1 } },
 	{ MODKEY,               XK_Tab,          rotate,      { .i = 0 } },
 
-	{ MODKEY,               XK_grave,        spawn,       SETPROP("_TABBED_SELECT_TAB") },
+	{ MODKEY,               XK_t,            spawn,       SETPROP("_TABBED_SELECT_TAB") },
 	{ MODKEY,               XK_1,            move,        { .i = 0 } },
 	{ MODKEY,               XK_2,            move,        { .i = 1 } },
 	{ MODKEY,               XK_3,            move,        { .i = 2 } },
@@ -63,14 +63,14 @@ static Key keys[] = {
 
 	{ 0,                    XK_F11,          fullscreen,  { 0 } },
 
-	{ MODKEY,               XK_Shift_L,      showbar,     { .i = 1 } },
-	{ ShiftMask,            XK_Control_L,    showbar,     { .i = 1 } },
+	{ Mod1Mask,             XK_Shift_L,      showbar,     { .i = 1 } },
+	{ ShiftMask,            Mod1Mask,        showbar,     { .i = 1 } },
 	{ MODKEY,               XK_comma,        showbar,     { .i = 1 } },
-	{ MODKEY,               XK_period,        showbar,    { .i = 0 } },
+	{ MODKEY,               XK_period,       showbar,    { .i = 0 } },
 };
 
 static Key keyreleases[] = {
 	/* modifier             key              function     argument */
-	{ MODKEY|ShiftMask,     XK_Shift_L,      showbar,     { .i = 0 } },
-	{ MODKEY|ShiftMask,     XK_Control_L,    showbar,     { .i = 0 } },
+	{ Mod1Mask|ShiftMask,   XK_Shift_L,      showbar,     { .i = 0 } },
+	{ Mod1Mask|ShiftMask,   Mod1Mask,        showbar,     { .i = 0 } },
 };
